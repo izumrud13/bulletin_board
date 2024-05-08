@@ -9,6 +9,7 @@ NULLABLE = {"blank": True, "null": True}
 
 
 class Review(models.Model):
+    """Класс модели отзывов"""
     text = models.CharField(max_length=100, verbose_name='Текст')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
     ad = models.ForeignKey(Notice, on_delete=models.CASCADE, verbose_name='Объявление')

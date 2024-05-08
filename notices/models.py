@@ -13,6 +13,7 @@ class Notice(models.Model):
     price = models.PositiveIntegerField(verbose_name='Цена товара')
     descriptions = models.CharField(max_length=500, verbose_name='Описание товара')
     author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    image = models.ImageField(upload_to='notices/', verbose_name='Изображение товара', **NULLABLE)
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Дата создания объявления')
 
     def __str__(self):
