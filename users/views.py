@@ -1,10 +1,8 @@
-from django.shortcuts import render
 from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from users.models import User
-from users.permissions import IsOwner
 from users.serializers import UserSerializers, UserRegisterSerializer
 
 
@@ -13,7 +11,7 @@ class UserListApiView(generics.ListAPIView):
     """Класс для просмотра списка пользователей"""
     serializer_class = UserSerializers
     queryset = User.objects.all()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
 
 class UserCreateApiView(generics.CreateAPIView):
