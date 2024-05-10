@@ -9,3 +9,11 @@ class NoticesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Notice
         fields = ['title', 'price', 'descriptions', 'image']
+
+
+class NoticesDetailSerializers(serializers.ModelSerializer):
+    """Сериалайзер для просмотра одного объявления"""
+
+    class Meta:
+        model = Notice
+        fields = '__all__'

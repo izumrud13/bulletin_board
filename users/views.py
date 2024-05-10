@@ -11,7 +11,7 @@ class UserListApiView(generics.ListAPIView):
     """Класс для просмотра списка пользователей"""
     serializer_class = UserSerializers
     queryset = User.objects.all()
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
 
 class UserCreateApiView(generics.CreateAPIView):
