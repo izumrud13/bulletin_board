@@ -1,8 +1,9 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+
 from notices.models import Notice
-from users.models import User
 
 # Create your models here.
 NULLABLE = {"blank": True, "null": True}
@@ -11,7 +12,7 @@ NULLABLE = {"blank": True, "null": True}
 class Review(models.Model):
     """Класс модели отзывов"""
     text = models.CharField(max_length=100, verbose_name='Текст')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Автор')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Автор')
     ad = models.ForeignKey(Notice, on_delete=models.CASCADE, verbose_name='Объявление')
     created_at = models.DateTimeField(default=timezone.now, verbose_name='Время')
 
