@@ -16,8 +16,8 @@ class NoticesListApiView(generics.ListAPIView):
     queryset = Notice.objects.all()
     permission_classes = [AllowAny]
     pagination_class = CustomPagination
-    filter_backends = (DjangoFilterBackend,)
-    filterset_class = NoticesFilter
+    filter_backends = (DjangoFilterBackend,) # Подключаем библотеку, отвечающую за фильтрацию к CBV
+    filterset_class = NoticesFilter # Выбираем созданный фильтр
 
 
 class NoticesCreateApiView(generics.CreateAPIView):
