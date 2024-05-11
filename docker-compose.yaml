@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    container_name: bulletin_board-db-1
+    restart: always
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+    env_file:
+      - .env
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+
+  app:
+    build: .
+    command: >
+      bash -c "python manage.py makemigrations
+      && python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
